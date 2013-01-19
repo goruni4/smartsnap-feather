@@ -109,7 +109,7 @@ local function OnInitialize()
 		CreateClientConVar(key, value, true, false)
 	end
 
-	for _,filename in ipairs(file.Find('smartsnap_offsets_*.txt')) do
+	for _,filename in ipairs(file.Find('smartsnap_offsets_*.txt', "DATA")) do
 		local file = file.Read(filename)
 		if file then
 			lines = string.Explode("\n", file)
@@ -300,7 +300,8 @@ local function DrawGridLines(vOrigin, vSX, vSY, gridLines, offsetX, offsetY, sig
 	local vY = vTemp + vSY * (1 - offsetY)
 
 	local vOffset, temp
-	local vsNormal = (ToScreen(vX) - ToScreen(vY)):Normalize()
+	local fthr_temp = ToScreen(vX) - ToScreen(vY)
+	local vsNormal = fthr_temp:Normalize()
 	
 	if math.abs(vsNormal.x) < 1 - math.abs(vsNormal.y) then temp = -0.5 * sign else temp = 0.5 * sign end
 	if math.abs(vsNormal.x) <     math.abs(vsNormal.y) then vsOffset = Vector(temp, 0, 0) else vsOffset = Vector(0, temp, 0) end
@@ -358,7 +359,8 @@ local function DrawBoundaryLines(vOrigin, vOpposite)
 	local vPoint
 	
 	if (vOrigin:Distance(vOpposite) > 5) then
-		vPoint = vOrigin + (vOpposite - vOrigin):Normalize() * 5
+		local fthr_temp2 = vOpposite - vOrigin
+		vPoint = vOrigin + fthr_temp2:Normalize() * 5
 	else
 		vPoint = vOrigin + (vOpposite - vOrigin) / 2
 	end
@@ -442,7 +444,7 @@ local function OnPaintHUD()
 	
 	-- updating the cache perhaps shouldn't be done here, CalcView?
 	cache.vLookPos = LocalPlayer():GetShootPos()
-	cache.vLookVector = LocalPlayer():GetCursorAimVector()
+	cache.vLookVector = LocalPlayer():GetAimVector()
 	cache.vLookClipPos = cache.vLookPos + cache.vLookVector * 3
 
 	local model = string.lower(target.entity:GetModel())
