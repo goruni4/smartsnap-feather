@@ -1,4 +1,5 @@
 // Written by Syranide, me@syranide.com
+// Feather update by Cloud Chiller, cloudchiller@cloudchiller.net
 
 if SERVER then AddCSLuaFile("client.lua") return end
 
