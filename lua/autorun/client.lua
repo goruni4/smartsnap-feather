@@ -786,7 +786,7 @@ local function OnPopulateToolPanel(panel)
 end
 
 function OnPopulateToolMenu()
-	spawnmenu.AddToolMenuOption("Options", "Player", "SmartSnapSettings", "SmartSnap", "", "", OnPopulateToolPanel, {SwitchConVar = 'snap_enabled'})
+	spawnmenu.AddToolMenuOption("Options", "Player", "SmartSnapSettings", "SmartSnap Feather", "", "", OnPopulateToolPanel, {SwitchConVar = 'snap_enabled'})
 end
 
 hook.Add("PopulateToolMenu", "SmartSnapToolMenu", OnPopulateToolMenu)
