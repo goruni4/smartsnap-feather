@@ -1,11 +1,11 @@
 "AddonInfo"
 {
-	"name"				"SmartSnap"
-	"version"			"0.9.5"
+	"name"				"SmartSnap Feather"
+	"version"			"GIT"
 	"up_date"			""
-	"author_name"			"Syranide"
-	"author_email"			"public@syranide.com"
-	"author_url"			"http://www.syranide.com"
+	"author_name"			"Originally by Syranide, Feather maintained by Cloud Chiller"
+	"author_email"			"cloudchiller@cloudchiller.net"
+	"author_url"			"https://github.com/steamruler/smartsnap-feather"
 	"info"				"A seamless tool for placing objects with pinpoint accuracy"
 	"override"			"0"
 }
