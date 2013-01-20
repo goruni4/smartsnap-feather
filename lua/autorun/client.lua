@@ -302,7 +302,7 @@ local function DrawGridLines(vOrigin, vSX, vSY, gridLines, offsetX, offsetY, sig
 
 	local vOffset, temp
 	local fthr_temp = ToScreen(vX) - ToScreen(vY)
-	local vsNormal = fthr_temp:Normalize()
+	local vsNormal = fthr_temp:GetNormal()
 	
 	if math.abs(vsNormal.x) < 1 - math.abs(vsNormal.y) then temp = -0.5 * sign else temp = 0.5 * sign end
 	if math.abs(vsNormal.x) <     math.abs(vsNormal.y) then vsOffset = Vector(temp, 0, 0) else vsOffset = Vector(0, temp, 0) end
@@ -357,11 +357,11 @@ local function DrawGrid(vOrigin, vSX, vSY)
 end
 
 local function DrawBoundaryLines(vOrigin, vOpposite)
-	local vPoint
+	local vPoint = Vector(0,0,0)
 	
 	local fthr_temp2 = vOpposite - vOrigin
 	if (vOrigin:Distance(vOpposite) > 5) then
-		vPoint = vOrigin + fthr_temp2:Normalize() * 5
+		vPoint = vOrigin + fthr_temp2:GetNormal() * 5
 	else
 		vPoint = vOrigin + fthr_temp2 / 2
 	end
@@ -664,6 +664,11 @@ local function OnPopulateToolPanel(panel)
 	panel:AddControl("CheckBox", {
 		Label = "Enable",
 		Command = "snap_enabled",
+	})
+	
+	panel:AddControl("CheckBox", {
+		Label = "Disable snapping on USE",
+		Command = "snap_disableuse",
 	})
 	
 	panel:AddControl("CheckBox", {
