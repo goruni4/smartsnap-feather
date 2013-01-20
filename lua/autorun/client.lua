@@ -359,11 +359,11 @@ end
 local function DrawBoundaryLines(vOrigin, vOpposite)
 	local vPoint
 	
+	local fthr_temp2 = vOpposite - vOrigin
 	if (vOrigin:Distance(vOpposite) > 5) then
-		local fthr_temp2 = vOpposite - vOrigin
 		vPoint = vOrigin + fthr_temp2:Normalize() * 5
 	else
-		vPoint = vOrigin + (vOpposite - vOrigin) / 2
+		vPoint = vOrigin + fthr_temp2 / 2
 	end
 	
 	local vsA, vsB = LineToScreen(vPoint, vOrigin)
